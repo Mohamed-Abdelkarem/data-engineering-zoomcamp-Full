@@ -76,10 +76,14 @@ This creates a `pyproject.toml` file for managing dependencies and a `.python-ve
 
 ```bash
 uv run which python  # Python in the virtual environment
+# --> /home/codespace/.python/current/bin/python
 uv run python -V
+# --> Python 3.13.11
 
 which python        # System Python
+# --> /workspaces/Data-Engineering-ZoomCamp/pipeline/.venv/bin/python
 python -V
+# --> Python 3.12.1
 ```
 
 You'll see they're different - `uv run` uses the isolated environment.
@@ -96,7 +100,7 @@ This adds pandas to your `pyproject.toml` and installs it in the virtual environ
 
 ### Running the Pipeline
 
-Now we can execute the file:
+Now we can execute the file (using the virtual environment):
 
 ```bash
 uv run python pipeline.py 10
@@ -109,10 +113,13 @@ We will see:
 
 ## Git Configuration
 
-This script produces a binary (parquet) file, so let's make sure we don't accidentally commit it to git by adding parquet extensions to `.gitignore`:
+This script produces a binary (parquet) file, so let's make sure we don't accidentally commit it to git by adding parquet extensions to `.gitignore` (the file that contains things not to be commited to the original):
 
 ```
 *.parquet
 ```
+Result:
+    -  Code → committed
+    - Outputs → ignored
 
 **[↑ Up](README.md)** | **[← Previous](01-introduction.md)** | **[Next →](03-postgres-docker.md)**
