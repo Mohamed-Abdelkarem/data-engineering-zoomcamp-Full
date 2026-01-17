@@ -1,6 +1,6 @@
 # Virtual Environments and Data Pipelines
 
-**[↑ Up](README.md)** | **[← Previous](01-introduction.md)** | **[Next →](03-postgres-docker.md)**
+**[↑ Up](README.md)** | **[← Previous](01-introduction.md)** | **[Next →](03-dockerizing-pipeline.md)**
 
 A **data pipeline** is a service that receives data as input and outputs more data. For example, reading a CSV file, transforming the data somehow and storing it as a table in a PostgreSQL database.
 
@@ -122,4 +122,4 @@ Result:
     -  Code → committed
     - Outputs → ignored
 
-**[↑ Up](README.md)** | **[← Previous](01-introduction.md)** | **[Next →](03-postgres-docker.md)**
+**[↑ Up](README.md)** | **[← Previous](01-introduction.md)** | **[Next →](03-dockerizing-pipeline.md)**
