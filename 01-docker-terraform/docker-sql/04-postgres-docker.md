@@ -27,7 +27,7 @@ docker run -it --rm \
   * Docker manages this volume automatically
   * Data persists even after container is removed
   * Volume is stored in Docker's internal storage
-* `-p 5432:5432` maps port 5432 from container to host
+* `-p 5432:5432` maps port 5432 from container to host (To allow your computer and other applications to connect to the service running inside the container.)
 * `postgres:18` uses PostgreSQL version 18 (latest as of Dec 2025)
 
 ### Alternative Approach - Bind Mount
@@ -48,8 +48,8 @@ docker run -it \
 
 ### Named Volume vs Bind Mount
 
-* **Named volume** (`name:/path`): Managed by Docker, easier
-* **Bind mount** (`/host/path:/container/path`): Direct mapping to host filesystem, more control
+* **Named volume** (`name:/path`): Managed by Docker, easier (give it only a name, and docker creates the folder).
+* **Bind mount** (`/host/path:/container/path`): Direct mapping to host filesystem, more control.
 
 ## Connecting to PostgreSQL
 
@@ -70,8 +70,8 @@ uv run pgcli -h localhost -p 5432 -u root -d ny_taxi
 ```
 
 * `uv run` executes a command in the context of the virtual environment
-* `-h` is the host. Since we're running locally we can use `localhost`.
-* `-p` is the port.
+* `-h` is the host. Since we're running locally (my machine) we can use `localhost`.
+* `-p` is the exposed Postgres port we used while creating the DB (the specific door on that host where the service is listening, e.g. 5432).
 * `-u` is the username.
 * `-d` is the database name.
 * The password is not provided; it will be requested after running the command.
