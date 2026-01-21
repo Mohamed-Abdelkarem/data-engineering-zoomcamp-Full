@@ -17,7 +17,7 @@ Let's create a Jupyter notebook to explore the data:
 ```bash
 uv run jupyter notebook
 ```
-
+* This will open Jupyter in the browser. It will ask for the "token" which can be found in the CLI after running the above command.
 ## The NYC Taxi Dataset
 
 We will use data from the [NYC TLC Trip Record Data website](https://www1.nyc.gov/site/tlc/about/tlc-trip-record-data.page).
@@ -59,7 +59,7 @@ We have a warning:
 /tmp/ipykernel_25483/2933316018.py:1: DtypeWarning: Columns (6) have mixed types. Specify dtype option on import or set low_memory=False.
 ```
 
-So we need to specify the types:
+So we need to specify the types (because we work with CSV.. but Parquet files, for example contain the types embedded):
 
 ```python
 dtype = {
@@ -115,12 +115,14 @@ uv add sqlalchemy psycopg2-binary
 from sqlalchemy import create_engine
 engine = create_engine('postgresql://root:root@localhost:5432/ny_taxi')
 ```
-
+* 'Postgresql :// username : password @ running on localhost : port / database name'
 ### Get DDL Schema
+* Before this: make sure that you have these running [postgres container: docker run .. postgres:18 --> connection to it: uv run pgcli .. ny_taxi]
 
 ```python
 print(pd.io.sql.get_schema(df, name='yellow_taxi_data', con=engine))
 ```
+* make sure that the Postgres container is running (docker ps -> to check runnning ones)
 
 Output:
 
@@ -152,8 +154,9 @@ CREATE TABLE yellow_taxi_data (
 ```python
 df.head(n=0).to_sql(name='yellow_taxi_data', con=engine, if_exists='replace')
 ```
+`.to_sql()` takes your pandas DataFrame and inserts it into a SQL table.
 
-`head(n=0)` makes sure we only create the table, we don't add any data yet.
+`head(n=0)` gets the headers only.. so we only create the table, we don't add any data yet.
 
 ## Ingesting Data in Chunks
 
