@@ -63,6 +63,9 @@ def ingest_data(user, password, host, port, db, table):
     # Ingestion logic here
     pass
 ```
+* click turns your pipeline into a real CLI tool, not just a Python script — safer, clearer, and production-ready.
+* `@click.command()`: makes a Python function runnable as a terminal command, enabling Click to handle command execution, help text, and errors automatically.
+* `@click.option()`: defines named command-line inputs (parameters) for that command with type checking, defaults, validation, and --help support, replacing manual sys.argv parsing.
 
 ## Running the Script
 
