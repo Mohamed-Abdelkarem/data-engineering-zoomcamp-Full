@@ -2,9 +2,26 @@
 
 **[↑ Up](README.md)** | **[← Previous](06-ingestion-script.md)** | **[Next →](08-dockerizing-ingestion.md)**
 
-`pgcli` is a handy tool but it's cumbersome to use for complex queries and database management. [`pgAdmin` is a web-based tool](https://www.pgadmin.org/) that makes it more convenient to access and manage our databases.
+`pgcli` is a handy tool but it's cumbersome to use for complex queries and database management. [`pgAdmin` is a web-based tool](https://www.pgadmin.org/) that makes it more convenient to access and manage our databases --> **target:** manage your Postgres database using a web UI (pgAdmin) instead of typing SQL commands in the terminal
 
 It's possible to run pgAdmin as a container along with the Postgres container, but both containers will have to be in the same _virtual network_ so that they can find each other.
+
+### How it works (high level – pgAdmin vs pgcli)
+
+* Postgres runs in one Docker container (the database itself)
+--> (same database pgcli connects to)
+
+* pgAdmin runs in a separate Docker container (a web-based management tool)
+--> (pgcli runs directly in your terminal, not in a container)
+
+* A Docker network connects the two containers so they can communicate by name
+--> (pgcli connects via localhost and exposed ports instead)
+
+* You open pgAdmin in your browser and connect to Postgres using the container name
+--> (pgcli connects from the terminal using host/port credentials)
+
+* pgAdmin lets you browse, query, and manage the database visually
+--> (pgcli is text-only and query-focused)
 
 ## Run pgAdmin Container
 
@@ -66,6 +83,15 @@ docker run -it \
 
 * Just like with the Postgres container, we specify a network and a name for pgAdmin.
 * The container names (`pgdatabase` and `pgadmin`) allow the containers to find each other within the network.
+
+  
+* **What the volumes do:**
+  
+-`ny_taxi_postgres_data` (in pgdatabase container) → keeps database data safe
+
+-`pgadmin_data` (in pgadmin container) → saves pgAdmin settings
+
+-You can stop containers and nothing is lost
 
 ## Connect pgAdmin to PostgreSQL
 
