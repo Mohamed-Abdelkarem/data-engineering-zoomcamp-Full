@@ -54,6 +54,22 @@ docker run -it \
     --pg-db=ny_taxi \
     --target-table=yellow_taxi_trips
 ```
+Or use the following to work with the  version:
+
+```bash
+docker run -it \
+  --network=pg-network \
+  taxi_ingest:v001 \
+  --pg-user=root \
+  --pg-pass=root \
+  --pg-host=pgdatabase \
+  --pg-port=5432 \
+  --pg-db=ny_taxi \
+  --year=2021 \
+  --month=1 \
+  --target-table=yellow_taxi_trips \
+  --chunksize=100000
+```
 
 ### Important Notes
 
