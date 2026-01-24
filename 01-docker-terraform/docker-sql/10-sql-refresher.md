@@ -9,6 +9,12 @@ Pre-Requisites: If you followed the course in the given order, Docker Compose sh
 Once done, you can go to http://localhost:8085/browser/ to access pgAdmin.
 Don't forget to Right Click on the server or database to refresh it in case you don't see the new table.
 
+________________________
+need to create first the new table and add it to the database.
+- use this link, to get the "taxi zones) table: https://d37ci6vzurychx.cloudfront.net/misc/taxi_zone_lookup.csv 
+- created a similar python code, and ran it to add the data to the DB --> add_zone_table.py --> table name: taxi_zones
+
+
 Now start querying!
 
 ## Inner Joins
