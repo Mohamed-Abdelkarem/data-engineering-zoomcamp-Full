@@ -28,7 +28,7 @@ terraform destroy
 ### Warning
 Remember to use a [proper gitignore](https://github.com/github/gitignore/blob/main/Terraform.gitignore) file before publishing your code on GitHub
 
-### Fallback
+### Fallback (this is advanced part, in organizations where it denies the doowload of keys and so on.. no need)
 1. Give yourself the token creator role on the pertinent service account
     ```bash
     gcloud iam service-accounts add-iam-policy-binding \
