@@ -2,7 +2,7 @@
 The course consists of structured modules, hands-on workshops, and a final project by building an end-to-end data pipeline from scratch.
 
 <p align="center">
-  <img width="100%" src="images/architecture/arch_v4_workshops.jpg" alt="Data Engineering Zoomcamp Overview">
+  <img width="100%" src="/images/architecture/arch_v4_workshops.jpg" alt="Data Engineering Zoomcamp Overview">
 </p>
 
 ### **Modules**
