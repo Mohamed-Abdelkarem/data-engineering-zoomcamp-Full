@@ -252,6 +252,8 @@ We can now schedule the same pipeline shown above to run daily at 9 AM UTC. We'l
 Note: given the large dataset, we'll backfill only data for the green taxi dataset for the year 2019.
 
 The flow code: [`05_postgres_taxi_scheduled.yaml`](flows/05_postgres_taxi_scheduled.yaml).
+* trigger: a condition when met, then the flow will run on its own (can't excute it manually).
+* backfill: we manually set the condition of the trigger (some specific date).. to test mainly.
 
 #### Videos
 
@@ -337,6 +339,12 @@ graph LR
 ```
 
 The flow code: [`08_gcp_taxi.yaml`](flows/08_gcp_taxi.yaml).
+
+* This is almost similar to the (04_postgres_taxi.yaml).. but used GSC, not PostgreSQL DB.
+* note: the bigquery doesn't use normal SQL --> need to convert the query to it.
+* It's ELT --> there is a task at the start that loads the whole CSV file to the cloud (before any processing).
+* note: task "extract" is for downloading the file tothe  local system first, then task "upload_to_gcs" to upload it --> because Direct streaming from GitHub to BigQuery isn't supported.
+
 
 #### Videos
 
