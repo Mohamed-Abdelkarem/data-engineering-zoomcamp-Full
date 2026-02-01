@@ -489,7 +489,8 @@ docker compose up -d
 
 --> I need to use the GEMINI_API_KEY (can't be shared on docker compose publicly). 2 options:
 * (export GEMINI_API_KEY=...) sets an environment variable **temporarily for one terminal session only** (solution shared in course, but not practical long-term).
-* add it to (.env): is a persistent file read automatically by Docker Compose and is the **recommended** choice for local development secrets --> don't forget to add (.env) to the (.gitignore) in the same directory.
+* add it inside a KV file (value = KEY): then use it inside the task as (apiKey: "{{ kv('GEMINI_API_KEY') }}")
+* XXX add it to (.env): is a persistent file read automatically by Docker Compose and is the **recommended** choice for local development secrets --> don't forget to add (.env) to the (.gitignore) in the same directory --> didn't work at all with me.. it seems to not able to read the (.env) file.
 
 #### Exercise: ChatGPT vs AI Copilot Comparison
 
