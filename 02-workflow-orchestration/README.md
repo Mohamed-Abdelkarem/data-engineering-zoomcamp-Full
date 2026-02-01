@@ -252,8 +252,9 @@ We can now schedule the same pipeline shown above to run daily at 9 AM UTC. We'l
 Note: given the large dataset, we'll backfill only data for the green taxi dataset for the year 2019.
 
 The flow code: [`05_postgres_taxi_scheduled.yaml`](flows/05_postgres_taxi_scheduled.yaml).
-* trigger: a condition when met, then the flow will run on its own (can't excute it manually).
-* backfill: we manually set the condition of the trigger (some specific date).. to test mainly.
+* trigger: a condition when met, then the flow will run on its own (can't execute it manually).
+* backfill: we manually set the condition of the trigger (some specific date), to test mainly.
+* notice: in the "file" variable --> it uses (trigger.date) instead of (inputs.year).
 
 #### Videos
 
@@ -479,13 +480,16 @@ services:
               model-name: gemini-2.5-flash
               api-key: ${GEMINI_API_KEY}
 ```
-
 Then restart Kestra:
 ```bash
 cd 02-workflow-orchestration/docker
 export GEMINI_API_KEY="your-api-key-here"
 docker compose up -d
 ```
+
+--> I need to use the GEMINI_API_KEY (can't be shared on docker compose publicly). 2 options:
+* (export GEMINI_API_KEY=...) sets an environment variable **temporarily for one terminal session only** (solution shared in course, but not practical long-term).
+* add it to (.env): is a persistent file read automatically by Docker Compose and is the **recommended** choice for local development secrets --> don't forget to add (.env) to the (.gitignore) in the same directory.
 
 #### Exercise: ChatGPT vs AI Copilot Comparison
 
