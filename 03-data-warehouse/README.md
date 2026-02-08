@@ -1,5 +1,3 @@
-<img width="1119" height="537" alt="image" src="https://github.com/user-attachments/assets/d7af820e-3f0f-42a6-8e0e-36d1b251d314" /># Data Warehouse and BigQuery
-
 - [Slides](https://docs.google.com/presentation/d/1a3ZoBAXFk8-EhUsd7rAZd-5p_HpltkzSeujjRGB2TAI/edit?usp=sharing)  
 - [Big Query basic SQL](big_query.sql)
 
@@ -76,6 +74,47 @@ SELECT * FROM `kestra-demo-486016.zoomcamp.external_yellow_tripdata`;
 ## :movie_camera: Internals of BigQuery
 
 [![](https://markdown-videos-api.jorgenkh.no/youtube/eduHi1inM4s)](https://youtu.be/eduHi1inM4s&list=PL3MmuxUbc_hJed7dXYoJw8DoCuVHhGEQb&index=37)
+
+<img width="631" height="709" alt="image" src="https://github.com/user-attachments/assets/3b2600dd-dcf0-4f80-b8a1-224ab83cfe43" />
+
+Purpose: You don’t need to know BigQuery internals to use it effectively, but understanding them helps when building advanced data products.
+
+1. Storage Layer – Colossus
+  - BigQuery stores data in Colossus, a cheap, columnar storage system.
+  - Separation of storage and compute reduces costs:
+  - Storage is cheap.
+  - Most cost comes from compute (query execution).
+
+2. Network Layer – Jupiter Network
+  - Challenge: storage and compute are on different hardware.
+  - Solution: Jupiter network inside Google data centers.
+  - Provides ~1 TB/s network speed, enabling fast communication between compute and storage.
+
+3. Query Execution – Dremel
+  - BigQuery uses Dremel as its query engine.
+  - Queries are broken into a tree structure:
+  - Root server receives query.
+  - Divides into smaller subqueries.
+  - Mixers further split queries.
+  - Leaf nodes fetch data from Colossus, process it, and return results upward.
+  - This distributed execution makes BigQuery extremely fast.
+
+4. Storage Format – Column-Oriented
+  - Compared to row-oriented (like CSV), column-oriented storage is better for:
+  - Aggregations on specific columns.
+  - Queries that only need a subset of columns.
+  - BigQuery uses columnar storage to optimize performance.
+
+5. Example Query Flow
+  - Query: SELECT a, COUNT(b) FROM table GROUP BY a.
+  - Root server rewrites into smaller queries.
+  - Leaf nodes execute on subsets of data.
+  - Results flow back through mixers → root server → final aggregated output.
+
+6. Why BigQuery is Fast
+  - Distributed workers handle queries in parallel.
+  - Avoids bottlenecks of single-node execution.
+  - Scales efficiently with large datasets.
 
 ## Advanced topics
 
