@@ -1,4 +1,4 @@
-# Data Warehouse and BigQuery
+<img width="1119" height="537" alt="image" src="https://github.com/user-attachments/assets/d7af820e-3f0f-42a6-8e0e-36d1b251d314" /># Data Warehouse and BigQuery
 
 - [Slides](https://docs.google.com/presentation/d/1a3ZoBAXFk8-EhUsd7rAZd-5p_HpltkzSeujjRGB2TAI/edit?usp=sharing)  
 - [Big Query basic SQL](big_query.sql)
@@ -47,9 +47,31 @@ SELECT * FROM `kestra-demo-486016.zoomcamp.external_yellow_tripdata`;
 
 [![](https://markdown-videos-api.jorgenkh.no/youtube/-CqXf7vhhDs)](https://youtu.be/-CqXf7vhhDs?si=p1sYQCAs8dAa7jIm&t=193&list=PL3MmuxUbc_hJed7dXYoJw8DoCuVHhGEQb&index=35)
 
+- Partitioning:
+  - you can create partitions based on [days "default" - hours - months - years].
+  - The number of partitions "limit" is 4000.
+
 ## :movie_camera: Best practices
 
 [![](https://markdown-videos-api.jorgenkh.no/youtube/k81mLJVX08w)](https://youtu.be/k81mLJVX08w&list=PL3MmuxUbc_hJed7dXYoJw8DoCuVHhGEQb&index=36)
+
+- Cost reduction
+  - Avoid SELECT *
+  - Price your queries before running them
+  - Use clustered or partitioned tables
+  - Use streaming inserts with caution
+  - Materialize query results in stages
+ 
+- Query performance
+  - Filter on partitioned columns
+  - Denormalizing data
+  - Use nested or repeated columns
+  - Use external data sources appropriately
+  - Don't use it, in case u want a high query performance
+  - Reduce data before using a JOIN
+  - Do not treat WITH clauses as prepared statements
+  - Avoid oversharding tables
+  - Optimize your join patterns As a best practice, place the table with the largest number of rows first, followed by the table with the fewest rows, and then place the remaining tables by decreasing size.
 
 ## :movie_camera: Internals of BigQuery
 
