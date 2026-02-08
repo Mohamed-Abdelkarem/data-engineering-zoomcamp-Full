@@ -75,7 +75,7 @@ SELECT * FROM `kestra-demo-486016.zoomcamp.external_yellow_tripdata`;
 
 [![](https://markdown-videos-api.jorgenkh.no/youtube/eduHi1inM4s)](https://youtu.be/eduHi1inM4s&list=PL3MmuxUbc_hJed7dXYoJw8DoCuVHhGEQb&index=37)
 
-<img width="631" height="709" alt="image" src="https://github.com/user-attachments/assets/3b2600dd-dcf0-4f80-b8a1-224ab83cfe43" />
+<img width="315" height="355" alt="image" src="https://github.com/user-attachments/assets/3b2600dd-dcf0-4f80-b8a1-224ab83cfe43" />
 
 Purpose: You don’t need to know BigQuery internals to use it effectively, but understanding them helps when building advanced data products.
 
