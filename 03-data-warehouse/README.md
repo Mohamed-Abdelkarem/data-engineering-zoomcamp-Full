@@ -11,6 +11,36 @@
 
 [![](https://markdown-videos-api.jorgenkh.no/youtube/jrHljAoD6nM)](https://youtu.be/jrHljAoD6nM&list=PL3MmuxUbc_hJed7dXYoJw8DoCuVHhGEQb&index=34)
 
+- When creating an **external table**, BigQuery can’t know the number of rows or estimate query cost in advance, because the data is not stored inside BigQuery.
+The data lives in an external system, such as Google Cloud Storage.
+
+- **Partitioned table**
+
+  - Data is split into **separate partitions** (usually by date).
+
+  - Queries scan only relevant partitions, not the whole table.
+
+  - Used mainly to reduce scanned data and cost.
+
+  - Common for time-based data (e.g. pickup_date).
+
+- **Clustered table**
+
+  - Data inside the table is **sorted** by one or more columns.
+
+  - Helps BigQuery filter faster within partitions or tables.
+
+  - Best for columns often used in WHERE, GROUP BY, or JOIN.
+
+```
+CREATE OR REPLACE TABLE `kestra-demo-486016.zoomcamp.yellow_tripdata_partitioned_clustered`
+PARTITION BY DATE(tpep_pickup_datetime)
+CLUSTER BY VendorID AS
+SELECT * FROM `kestra-demo-486016.zoomcamp.external_yellow_tripdata`;
+````
+- you can view/confirm these details after creating the table from:
+- (the explorer --> project name "kestra-demo-486016" --> dateset "zoomcamp" --> table "yellow_tripdata_partitioned_clustered" --> details --> "Partitioned on field" & "Partitioned on field")
+
 ## :movie_camera: Partitioning and clustering
 
 - Partitioning vs Clustering
